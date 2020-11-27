@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Socket Server</title>
+</head>
+<body>
+    <h1>Socket Server</h1>
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+        const client = io();
+        client.on('connect', function (){
+             console.log('Connected to server...');
+        });
+        client.on('disconnect', function (){
+             console.log('Disconnected to server...');
+        });
+        client.emit('message', {name: 'Hector'});
+        client.on('message', (payload)=>{
+            console.log('Message from server:', payload);
+        });
+    </script>
+</body>
+</html>
